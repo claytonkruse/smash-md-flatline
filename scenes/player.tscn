@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d20cl54rjtbxi" path="res://scripts/player/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://dgrfpnt0ixahj" path="res://sprites/player/surgeon-unarmed-idle.png" id="2_qhqgy"]
+[ext_resource type="Texture2D" uid="uid://cvd3bpg1f7fho" path="res://sprites/player/surgeon-unarmed-walk-20260926-002706.piskel" id="3_qhqgy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cvnsp"]
 atlas = ExtResource("2_qhqgy")
@@ -51,6 +52,14 @@ animations = [{
 "loop": 1,
 "name": &"idle",
 "speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_qhqgy")
+}],
+"loop": 1,
+"name": &"new_animation",
+"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a51ry"]
@@ -63,10 +72,8 @@ script = ExtResource("1_g2els")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=235631944]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_a51ry")
-animation = &"idle"
+animation = &"new_animation"
 autoplay = "idle"
-frame = 2
-frame_progress = 0.12532206
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1115217587]
 position = Vector2(-5.5, 0.5)
