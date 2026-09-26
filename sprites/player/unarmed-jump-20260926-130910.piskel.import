@@ -1,0 +1,14 @@
+[remap]
+
+importer="com.technohacker.piskel"
+type="ImageTexture"
+uid="uid://ce64fjxhbcua2"
+path="res://.godot/imported/unarmed-jump-20260926-130910.piskel-4bb2f07bf8dd127baf1b1782996927bb.tres"
+
+[deps]
+
+source_file="res://sprites/player/unarmed-jump-20260926-130910.piskel"
+dest_files=["res://.godot/imported/unarmed-jump-20260926-130910.piskel-4bb2f07bf8dd127baf1b1782996927bb.tres"]
+
+[params]
+

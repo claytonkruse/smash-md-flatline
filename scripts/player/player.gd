@@ -29,16 +29,17 @@ func _physics_process(delta: float) -> void:
 
 
 func _update_animation(direction: float) -> void:
+	if direction != 0.0:
+		_sprite.flip_h = direction < 0.0
+
 	if not is_on_floor():
-		if _sprite.is_playing():
-			_sprite.pause()
+		if _sprite.animation != &"surgeon_unarmed_jump":
+			_sprite.play(&"surgeon_unarmed_jump")
 		return
 
 	var anim := &"surgeon_unarmed_idle"
-	if direction > 0.0:
-		anim = &"surgeon_unarmed_walk"
-	elif direction < 0.0:
-		anim = &"surgeon_unarmed_walk_backward"
+	if direction != 0.0:
+		anim = &"surgeon_unarmed_run"
 
 	if _sprite.animation != anim or not _sprite.is_playing():
 		_sprite.play(anim)
