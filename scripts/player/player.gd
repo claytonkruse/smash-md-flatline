@@ -1,5 +1,9 @@
 extends CharacterBody2D
 
+#references
+@onready var anim_player: AnimationPlayer = $AnimationPlayer
+@onready var hitbox: Area2D = $Hitbox
+@onready var _sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 const SPEED = 500.0
 const JUMP_VELOCITY = -1000.0
@@ -7,11 +11,17 @@ const MAX_JUMP_HEIGHT_SCALE = 6.0
 const MAX_LUNGE_TIME = 1.0
 const FLOAT_VELOCITY = 90.0
 
-@onready var _sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 var _lunging := false
 var _lunge_time := 0.0
 
+#attack variables
+var is_attacking: bool = false
+var current_attack_damage: float = 10.0 #placeholder
+
+#connects hitbox to damage function
+func _ready() -> void:
+	hitbox.body_entered.connect(_on_hitbox_body_entered)
 
 func _physics_process(delta: float) -> void:
 	if _lunging:
@@ -39,11 +49,20 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
+	# Trigger punch input
+	if Input.is_action_just_pressed("attack") and not is_attacking:
+		punch()
+		
 	move_and_slide()
 	_update_animation(direction)
 
-
 func _update_animation(direction: float) -> void:
+	if is_attacking:
+		if _sprite.animation != &"surgeon_unarmed_single_light":
+			_sprite.play(&"surgeon_unarmed_single_light")
+		return
+		
+		
 	if direction != 0.0:
 		_sprite.flip_h = direction < 0.0
 
@@ -69,3 +88,18 @@ func _airborne_animation() -> StringName:
 	if velocity.y > FLOAT_VELOCITY:
 		return &"surgeon_unarmed_land"
 	return &"surgeon_unarmed_float"
+	
+func punch() -> void:
+	is_attacking = true
+	current_attack_damage = 10.0 #placeholder amount
+	anim_player.play("Punch")
+	
+
+func finish_attack() -> void:
+	print("punched")
+	is_attacking = false
+
+#calls damage method on corresponding player
+func _on_hitbox_body_entered(body: Node2D) -> void:
+	if body != self and body.has_method("take_damage"):
+		body.take_damage(current_attack_damage)
