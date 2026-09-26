@@ -224,26 +224,81 @@ size = Vector2(53, 64)
 size = Vector2(53.333336, 64.333336)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e0y2q"]
+size = Vector2(31.333334, 64)
 
 [sub_resource type="Animation" id="Animation_g2els"]
 resource_name = "Punch"
-length = 0.25
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Hitbox/CollisionShape2D:disabled")
+tracks/0/path = NodePath("Hitbox/CollisionShape2D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(37, -0.33333206)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hitbox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.05, 0.1, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": []
+"values": [true, false, true]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"finish_attack"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_tuyoq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hitbox/CollisionShape2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(37, -0.33333206)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hitbox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qhqgy"]
 _data = {
-&"Punch": SubResource("Animation_g2els")
+&"Punch": SubResource("Animation_g2els"),
+&"RESET": SubResource("Animation_tuyoq")
 }
 
 [node name="Player" type="CharacterBody2D" unique_id=1527947510]
@@ -253,8 +308,7 @@ script = ExtResource("1_g2els")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=235631944]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_a51ry")
-animation = &"surgeon_unarmed_combo"
-autoplay = "surgeon_unarmed_idle"
+animation = &"surgeon_unarmed_single_light"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1115217587]
 position = Vector2(-5.5, 0)
@@ -267,12 +321,11 @@ position = Vector2(-5.666668, 0.16666794)
 shape = SubResource("RectangleShape2D_fvgfg")
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=1605334523]
-process_mode = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1234903502]
-process_mode = 4
-position = Vector2(34, -16.333334)
+position = Vector2(37, -0.33333206)
 shape = SubResource("RectangleShape2D_e0y2q")
+disabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=353196109]
 libraries/ = SubResource("AnimationLibrary_qhqgy")
