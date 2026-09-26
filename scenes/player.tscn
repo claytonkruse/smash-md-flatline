@@ -54,7 +54,33 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a51ry"]
-size = Vector2(53, 63)
+size = Vector2(53, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fvgfg"]
+size = Vector2(53.333336, 64.333336)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e0y2q"]
+
+[sub_resource type="Animation" id="Animation_g2els"]
+resource_name = "Punch"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hitbox/CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qhqgy"]
+_data = {
+&"Punch": SubResource("Animation_g2els")
+}
 
 [node name="Player" type="CharacterBody2D" unique_id=1527947510]
 scale = Vector2(3, 3)
@@ -65,9 +91,24 @@ texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_a51ry")
 animation = &"idle"
 autoplay = "idle"
-frame = 2
-frame_progress = 0.12532206
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1115217587]
-position = Vector2(-5.5, 0.5)
+position = Vector2(-5.5, 0)
 shape = SubResource("RectangleShape2D_a51ry")
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=23381652]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1787042211]
+position = Vector2(-5.666668, 0.16666794)
+shape = SubResource("RectangleShape2D_fvgfg")
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=1605334523]
+process_mode = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1234903502]
+process_mode = 4
+position = Vector2(34, -16.333334)
+shape = SubResource("RectangleShape2D_e0y2q")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=353196109]
+libraries/ = SubResource("AnimationLibrary_qhqgy")
