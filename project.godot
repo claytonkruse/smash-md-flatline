@@ -11,14 +11,18 @@ config_version=5
 [application]
 
 config/name="Smash MD Flatline"
-run/main_scene="res://main_scene.tscn"
+run/main_scene="uid://dmxp6ndwa3wgc"
 config/features=PackedStringArray("4.7", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="res://sprites/icon.svg"
 
 [display]
 
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/godot_piskel_importer/plugin.cfg")
 
 [physics]
 
