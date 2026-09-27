@@ -186,7 +186,7 @@ position = Vector2(337, 335)
 scale = Vector2(2, 2)
 
 [node name="Player2" parent="." unique_id=679247732 instance=ExtResource("1_0wfyh")]
-modulate = Color(1, 0, 0, 1)
+modulate = Color(1, 0.55, 0.12, 1)
 position = Vector2(816, 341)
 scale = Vector2(2, 2)
 player_id = 2
