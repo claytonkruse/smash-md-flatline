@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://cwojj82thqsaw"]
+
+[ext_resource type="Script" uid="uid://b1p4lmd2ptbkb" path="res://scripts/title_menu.gd" id="1_f2vs7"]
+[ext_resource type="Texture2D" uid="uid://cgq16abqjc4i2" path="res://sprites/menu/Smash-MD-FLATLINE-logo.png" id="2_y7hm8"]
+[ext_resource type="Texture2D" uid="uid://5mdylq0qq4dn" path="res://sprites/menu/Smash-MD-FLATLINE-logo (1).png" id="3_05xd0"]
+[ext_resource type="FontFile" uid="uid://mnm5k2s04j2p" path="res://EB_Garamond/EBGaramond-VariableFont_wght.ttf" id="4_2vcgg"]
+
+[sub_resource type="Theme" id="Theme_e0y2q"]
+
+[sub_resource type="FontVariation" id="FontVariation_fvgfg"]
+base_font = ExtResource("4_2vcgg")
+variation_embolden = 0.44
+spacing_glyph = 10
+
+[node name="Title Menu" type="Control" unique_id=559974769]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_f2vs7")
+
+[node name="Background" type="TextureRect" parent="." unique_id=776320165]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_y7hm8")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1264578196]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=310001467]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer/VBoxContainer" unique_id=450564372]
+custom_minimum_size = Vector2(400, 400)
+layout_mode = 2
+texture = ExtResource("3_05xd0")
+
+[node name="PlayButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=961172792]
+custom_minimum_size = Vector2(270, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = SubResource("Theme_e0y2q")
+theme_override_fonts/font = SubResource("FontVariation_fvgfg")
+theme_override_font_sizes/font_size = 40
+text = "PLAY"
+
+[node name="ExitButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=840923420]
+custom_minimum_size = Vector2(270, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = SubResource("FontVariation_fvgfg")
+theme_override_font_sizes/font_size = 40
+text = "EXIT"
